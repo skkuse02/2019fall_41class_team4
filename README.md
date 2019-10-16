@@ -2,7 +2,7 @@
 ## Team Information
 
 > **Member 1: Kim Woo Kyung**
-> Team Leader
+> [Team Leader]
 >
 > **Member 2: Moon Jae Wan**
 > 
