@@ -5,6 +5,12 @@
   padding: 8% 0 0;
   margin: auto;
 }
+.request-page {
+  width: 500px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+  
 .form {
   position: relative;
   z-index: 1;
@@ -16,6 +22,17 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form textarea {
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
@@ -53,6 +70,9 @@
   text-decoration: none;
 }
 .form .register-form {
+  display: none;
+}
+.form .other-request-form {
   display: none;
 }
 .container {
