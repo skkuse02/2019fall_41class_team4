@@ -1,0 +1,21 @@
+{
+	"name":"PICEKT",
+	"description":"SE project",
+	"version":"1.0",
+	"permissions":["activeTab"],
+	"manifest_version":2,
+	"background": {
+        "scripts": [
+            "login.js"
+        ],
+        "persistent": true
+    },
+	"browser_action":{
+		"default_title":"PICEKT",
+		"default_popup":"request.html"
+	},
+	"content_scripts":[{
+		"js":["jquery-3.4.1.min.js"],
+		"matches":["<all_urls>"]
+	}]
+}
