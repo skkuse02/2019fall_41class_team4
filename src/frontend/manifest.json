@@ -12,7 +12,7 @@
     },
 	"browser_action":{
 		"default_title":"PICEKT",
-		"default_popup":"request.html"
+		"default_popup":"cart.html"
 	},
 	"content_scripts":[{
 		"js":["jquery-3.4.1.min.js"],
