@@ -6,13 +6,13 @@
 	"manifest_version":2,
 	"background": {
         "scripts": [
-            "login.js"
+            "anim.js"
         ],
         "persistent": true
     },
 	"browser_action":{
 		"default_title":"PICEKT",
-		"default_popup":"cart.html"
+		"default_popup":"request.html"
 	},
 	"content_scripts":[{
 		"js":["jquery-3.4.1.min.js"],
