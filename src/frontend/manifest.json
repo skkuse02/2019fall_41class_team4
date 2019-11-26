@@ -2,7 +2,10 @@
 	"name":"PICEKT",
 	"description":"SE project",
 	"version":"1.0",
-	"permissions":["activeTab"],
+	"permissions":[
+		"activeTab",
+		"tabs"
+	],
 	"manifest_version":2,
 	"background": {
         "scripts": [
@@ -11,6 +14,7 @@
         "persistent": true
     },
 	"browser_action":{
+		"default_icon": "img/icon.png",
 		"default_title":"PICEKT",
 		"default_popup":"request.html"
 	},
