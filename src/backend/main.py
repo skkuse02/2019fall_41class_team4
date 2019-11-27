@@ -1,4 +1,4 @@
 from parser import Parser
 
-parser = Parser("http://item.gmarket.com.kr/Item?goodscode=1175120632&ver=637104594321172559")
-parser.parseDomain()
+parser = Parser("https://www.coupang.com/vp/products/142412365?itemId=42605959&vendorItemId=3056632559&isAddedCart=")
+parser.parseItem()
