@@ -22,4 +22,5 @@ urlpatterns = [
 	path('login/', include('authenticator.urls')),
 	path('register/', include('authenticator.urls')),
 	path('item/', include('parserer.urls')),
+	path('review/', include('parserer.urls')),
 ]

@@ -5,6 +5,7 @@ import json
 # Create your views here.
 def control(_request):
 	_response = select(_request)
+	print(_response)
 	return JsonResponse(_response)
 
 def select(_request): 
@@ -13,10 +14,20 @@ def select(_request):
 
 
 	parserer = Parserer("http://item.gmarket.co.kr/Item?goodscode=1175120632&ver=637104594321172559")
+	parserer.parseDomain()
+	parserer.recvTags()
 	
 	if 'item' in _path:
 		print("[Item Status]")
-		return parserer.parseItem()
+		try:
+			_response = parserer.parseItem()
+			_response['status'] = 'success'
+			_response['message'] = ''
+		except:
+			_response['status'] = 'fail'
+			_response['message'] = 'This shopping mall site is not supported'	
+		return _response
+
 	if 'review' in _path:
 		print("[Review Status]")
 		return praserer.parseReview()
