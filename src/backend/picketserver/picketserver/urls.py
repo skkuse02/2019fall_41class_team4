@@ -16,10 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
-#from authenticator import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 	path('login/', include('authenticator.urls')),
-#	path('login/', views.control, name='login'),
+	path('register/', include('authenticator.urls')),
+	path('item/', include('parserer.urls')),
 ]

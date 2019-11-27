@@ -1,6 +1,5 @@
 from django.http import HttpResponse, JsonResponse
 from .authenticator import Authenticator
-from .models import User
 import json
 
 # Create your views here.
