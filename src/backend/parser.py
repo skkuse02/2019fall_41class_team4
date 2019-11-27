@@ -13,4 +13,11 @@ class Parser():
 
 	def parseItem(self):
 		_bs_object = self.openUrl()
-		print(_bs_object.find(class_='price_real').get_text())
+		_name = _bs_object.find(class_='itemtit').get_text()
+		print(_name)
+	  
+		_img = _bs_object.select('li > a > img')
+		
+		_domain = _bs_object.find(class_='sprite__common')
+		_domain = _bs_object.select('span')
+		print(_domain)

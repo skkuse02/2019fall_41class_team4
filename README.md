@@ -1,6 +1,12 @@
 # SE Team Project
-## Team Information
 
+## Running Backend
+1. clone the repo:
+```
+$ git clone https://github.com/skkuse02/2019fall_41class_team4.git
+```
+
+## Team Information
 > **Member 1: Kim Woo Kyung**
 > [Team Leader]
 >
