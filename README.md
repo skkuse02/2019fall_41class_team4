@@ -4,8 +4,8 @@
 ## Running Backend
 0. check the environmnet:
 ```
-python version 3.x.x
-django version 2.x.x
+$ python version 3.x.x
+$ django version 2.x.x
 ```
 1. clone the repo:
 ```
