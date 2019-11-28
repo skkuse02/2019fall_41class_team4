@@ -7,7 +7,6 @@ class User(models.Model):
 	user_email = models.CharField(max_length=1024)
 
 class Item(models.Model):
-	item_id = models.CharField(max_length=1024, primary_key=True)
 	user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 	item_url = models.CharField(max_length=1024)
 	item_domain = models.CharField(max_length = 16)

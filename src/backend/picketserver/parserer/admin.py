@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Item
+from .models import Tag
 
 # Register your models here.
-admin.site.register(Item)
+class TagAdmin(admin.ModelAdmin):
+	list_display = ['tag_domain']
+
+admin.site.register(Tag, TagAdmin)

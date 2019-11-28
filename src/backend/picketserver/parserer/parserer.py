@@ -1,6 +1,6 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-from .models import Item
+from .models import Tag
 
 class Parserer:
 
@@ -52,11 +52,11 @@ class Parserer:
 
 	def recvTags(self):
 		try:
-			item = Item.objects.get(domain_name = self.m_domain)
-			self.m_tags['item_domain'] = item.item_domain
-			self.m_tags['name_tag'] = item.item_name
-			self.m_tags['price_tag'] = item.item_price
-			self.m_tags['image_tag'] = item.item_image
+			tag = Tag.objects.get(domain_name = self.m_domain)
+			self.m_tags['item_domain'] = tag.tag_domain
+			self.m_tags['name_tag'] = tag.tag_name
+			self.m_tags['price_tag'] = tag.tag_price
+			self.m_tags['image_tag'] = tag.tag_image
 		except:
 			return {'status':'fail', 'message':"This shopping mall site is not supported"}
 
