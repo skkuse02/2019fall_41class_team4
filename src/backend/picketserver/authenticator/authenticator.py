@@ -6,6 +6,15 @@ class Authenticator:
 		self.m_pw = None
 		self.m_email = None
 
+		def loadData(self, _rawdata):
+			try:
+				_data = json.loads(_rawdata)
+				self.m_id = _data['user_id']
+				self.m_pw = _data['user_pw']
+				self.m_email = _data['user_email']
+			except:
+				return 0, "Request Error"
+            
 		def validateUser(self): 
 			# validate id, pw
 			try:

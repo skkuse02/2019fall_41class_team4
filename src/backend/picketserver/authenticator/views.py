@@ -14,23 +14,23 @@ def select(_request):
 	authenticator = Authenticator()
 	_path = _request.path
 	_rawdata = _request.body.decode('utf-8')
-
+	authenticator.setId()
 	# try to load json
-	try: 
-		_data = json.loads(_rawdata)
-	except:
-		_response = {'status':'fail', 'message':'json error'}
-		return _response
+#	try: 
+#		_data = json.loads(_rawdata)
+#	except:
+#		_response = {'status':'fail', 'message':'json error'}
+#		return _response
 	
 	# retreive info from request
-	_id = _data['id']
-	_pw = _pw['pw']
-	_email = pw['email']
+#	_id = _data['id']
+#	_pw = _data['pw']
+#	_email = _data['email']
 
 	# set user info
-	authenticator.setId(_id)
-	authenticator.setPw(_pw)
-	authenticator.setEmail(_email)
+#	authenticator.setId(_id)
+#	authenticator.setPw(_pw)
+#	authenticator.setEmail(_email)
 
 	# select appropriate function
 	if 'login' in _path:
