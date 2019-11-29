@@ -1,0 +1,1 @@
+console.log('begin background.js');

@@ -43,7 +43,7 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-.submit-btn {
+.submit-btn, .login-btn {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -57,6 +57,7 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
+
 .close-btn {
 	border:1px solid transparent;
 	background-color: transparent;
@@ -65,6 +66,7 @@
   outline: 0;
   cursor: pointer;
 }
+
 .close-btn:after {
 	content: "X";
 	display: block;
@@ -86,6 +88,7 @@
 	box-shadow: 0 0 2px rgb(55, 92, 179);
 	cursor: pointer;
 }
+
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;

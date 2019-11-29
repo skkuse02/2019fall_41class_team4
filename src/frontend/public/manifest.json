@@ -1,0 +1,32 @@
+{
+  "content_security_policy": "script-src 'self' 'unsafe-eval' 'sha256-VX3nHy/hEcp3NKy8SIc+uIYW7pVj4W1hjbyg8j4KS4Q='; object-src 'self'",
+  "name": "PICEKT",
+  "description": "SE project",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ],
+  "manifest_version": 2,
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_icon": "img/icon.png",
+    "default_title": "PICEKT",
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "jquery-3.4.1.min.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
