@@ -10,7 +10,11 @@
   padding: 8% 0 0;
   margin: auto;
 }
-  
+.logo-img{
+  width: 200px;
+  height: 70px;
+  margin-left: 90px;
+}
 .form {
   position: relative;
   z-index: 1;
@@ -138,7 +142,7 @@
   color: #EF3B3A;
 }
 body {
-  background-image:url("img/min_background.PNG"); 
+  background-image:url("img/min_background_gray.PNG"); 
   background-repeat: repeat;
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;

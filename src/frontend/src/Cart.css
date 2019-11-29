@@ -1,8 +1,8 @@
 body {
   width: 630px;
   height: 580px;
-  background-image:url("img/min_background_gray.PNG"); 
-  background-repeat: repeat;
+  /* background-image:url("img/min_background_gray.PNG");  */
+  /* background-repeat: repeat; */
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

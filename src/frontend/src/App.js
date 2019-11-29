@@ -10,12 +10,18 @@ function App() {
   //   document.getElementById("url-input").value = tab.url;
   // });
 
-  const [page, setPage] = useState('cart');
+  const [page, setPage] = useState('login');
 
   function openRequest() {
     setPage('request');
   }
-
+  if(page==='login'){
+    return (
+      <div className="App">
+        <Login></Login>
+      </div>
+    )
+  }
   if (page === 'cart') {
     return (
       <div className="App">

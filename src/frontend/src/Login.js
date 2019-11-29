@@ -20,6 +20,7 @@ function Login(props) {
 
   return (
     <div class="login-page">
+      <img class="logo-img" src="img/logo.png" />
       <div class="form">
         <form class="register-form">
           <h2>REGISTER</h2>
