@@ -2,6 +2,8 @@ import React from 'react';
 import './Form.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import { bigIntLiteral } from '@babel/types';
+
 function HelpMessage(props) {
   function onScroller() {
     window.$('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
@@ -16,12 +18,15 @@ function HelpMessage(props) {
     </p>
   );
 }
-function createNotification() {
-
+function failNotification() {
   NotificationManager.error('Please Check Your ID or Password', 'Login Faild', 2500, () => {
   });
-      // NotificationManager.success('Success Create Account', 'Sign in and Enjoy PICKET');
 }
+
+function createNotification() {
+  NotificationManager.success('Sign in and Enjoy PICKET','Success Create Account', 1000);
+}
+
 function Login(props) {
   return (
     <div class="login-page">
@@ -32,17 +37,17 @@ function Login(props) {
           <input type="text" placeholder="name" />
           <input type="password" placeholder="password" />
           <input type="text" placeholder="email address" />
-          <button class="create-btn" type="button">create</button>
+          <button class="create-btn" type="button" onClick={createNotification}>create</button>
           <HelpMessage msg="Already registered? " detail="Sign In" />
         </form>
         <form class="login-form">
           <h2>LOGIN</h2>
           <input type="text" placeholder="username" />
           <input type="password" placeholder="password" />
-          <button class="login-btn" onClick={createNotification} type="button">login</button>
+          <button class="login-btn" onClick={props.openCart} type="button">login</button>
           <HelpMessage msg="Not registered? " detail="Create an account" />
-          <NotificationContainer/>
         </form>
+        <NotificationContainer/>
       </div>
     </div>
   );

@@ -15,10 +15,13 @@ function App() {
   function openRequest() {
     setPage('request');
   }
+  function openCart() {
+    setPage('cart');
+  }
   if(page==='login'){
     return (
       <div className="App">
-        <Login></Login>
+        <Login openCart={openCart}></Login>
       </div>
     )
   }
