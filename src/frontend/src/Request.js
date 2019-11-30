@@ -22,10 +22,13 @@ function submitNotification() {
     NotificationManager.info('Request Submit Completed','Thank You for Request', 1000);
 }
 
-function Request() {
+function Request(props) {
 
     return (
         <div class="request-page">
+            <div class="wrap">
+                <a href="#" class="back-btn" onClick={props.openCart}>Back to Cart</a>
+            </div>
             <img class="logo-img-in-request" src="img/logo.png" />
             <div class="form">
                 <h2>Contact Us</h2>

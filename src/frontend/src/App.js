@@ -26,7 +26,7 @@ function App() {
   if (page === 'review') {
     return (
       <div className="App">
-        <Review></Review>
+        <Review openCart={openCart}></Review>
       </div>
     )
   }
@@ -47,7 +47,7 @@ function App() {
   if (page === 'request') {
     return (
       <div className="App">
-        <Request></Request>
+        <Request openCart={openCart}></Request>
       </div>
     )
   }

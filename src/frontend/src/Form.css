@@ -6,13 +6,13 @@
   margin: auto;
 }
 .request-page {
-  padding: 8% 0 0;
+  padding: 10% 0 0;
   margin: auto;
 }
 .logo-img{
   background: #e7e6e6;
-  width: 200px;
-  height: 70px;
+  width: 150px;
+  height: 60px;
   margin-left: 80px;
 }
 .logo-img-in-request{
@@ -152,4 +152,34 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
+}
+
+.wrap {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+	text-align: center;
+}
+
+.back-btn {
+	-webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	-o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	display: block;
+	text-decoration: none;
+	border-radius: 25px;
+  padding: 10px 15px;
+  background: white;
+  font-weight: bolder;
+	color: #4763a3;
+  box-shadow: #4763a3 0 0px 0px 2px inset;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+}
+
+.back-btn:hover {
+	color: rgba(255, 255, 255, 0.85);
+	box-shadow: #4763a3 0 0px 0px 40px inset;
 }
