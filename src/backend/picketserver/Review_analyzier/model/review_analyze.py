@@ -22,6 +22,23 @@ class BERTDataset(mx.gluon.data.Dataset):
     def __len__(self):
         return len(self.labels)
 
+
+class BERTClassifier(nn.Block):
+    def __init__(self, bert, num_classes=2, dropout=None, prefix=None, params=None):
+        super(BERTClassifier, self).__init__(prefix=prefix, params=params)
+        self.bert = bert
+
+        with self.name_scope():
+            self.classifier = nn.HybridSequential(prefix=prefix)
+            if dropout:
+                self.classifier.add(nn.Dropout(rate=dropout))
+            self.classifier.add(nn.Dense(units=num_classes))
+
+    def forward(self, inputs, token_types, valid_length=None):
+        _, pooler = self.bert(inputs, token_types, valid_length)
+        return self.classifier(pooler)
+
+
 ctx = mx.cpu()
 
 bert_base, vocab = get_mxnet_kobert_model(use_decoder=False, use_classifier=False, ctx=ctx)
@@ -35,3 +52,12 @@ dataset_test = nlp.data.TSVDataset("ratings_test.txt", field_indices=[1, 2], num
 max_len = 128
 data_train = BERTDataset(dataset_train, 0, 1, tok, max_len, True, False)
 data_test = BERTDataset(dataset_test, 0, 1, tok, max_len, True, False)
+
+model = BERTClassifier(bert_base, num_classes=2, dropout=0.1)
+
+model.classifier.initialize(init=mx.init.Normal(0.02), ctx=ctx)
+model.hybridize()
+
+# softmax cross entropy loss for classification
+loss_function = gluon.loss.SoftmaxCELoss()
+
