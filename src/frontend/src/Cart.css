@@ -251,7 +251,6 @@ body {
   left: 0;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
-  cursor: pointer;
 }
 
 .cart .price {
@@ -329,6 +328,7 @@ body {
 .save-txt{
   margin-top: 22px;
 }
+<<<<<<< HEAD
 
 .wrap {
 	text-align: center;
@@ -356,3 +356,5 @@ body {
 	color: rgba(255, 255, 255, 0.85);
 	box-shadow: #4763a3 0 0px 0px 40px inset;
 }
+=======
+>>>>>>> 5afbaf8e0b2fdd66521c6c62342692eef8ec2201

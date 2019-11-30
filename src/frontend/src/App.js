@@ -4,14 +4,13 @@ import Login from './Login';
 import Request from './Request';
 import Cart from './Cart';
 import { REFUSED } from 'dns';
-import Review from './Review';
 
 function App() {
   // chrome.tabs.getSelected(null, function (tab) {
   //   document.getElementById("url-input").value = tab.url;
   // });
 
-  const [page, setPage] = useState('review');
+  const [page, setPage] = useState('cart');
 
   function openRequest() {
     setPage('request');
@@ -19,10 +18,8 @@ function App() {
   function openCart() {
     setPage('cart');
   }
-  function openReview() {
-    setPage('review');
-  }
 
+<<<<<<< HEAD
   if (page === 'review') {
     return (
       <div className="App">
@@ -30,6 +27,8 @@ function App() {
       </div>
     )
   }
+=======
+>>>>>>> 5afbaf8e0b2fdd66521c6c62342692eef8ec2201
   if(page==='login'){
     return (
       <div className="App">
@@ -40,11 +39,10 @@ function App() {
   if (page === 'cart') {
     return (
       <div className="App">
-        <Cart openReview={openReview} openRequest={openRequest}></Cart>
+        <Cart openReview={openReview}></Cart>
       </div>
     )
-  }
-  if (page === 'request') {
+  } else if (page === 'request'){
     return (
       <div className="App">
         <Request openCart={openCart}></Request>
