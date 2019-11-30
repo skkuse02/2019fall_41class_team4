@@ -19,7 +19,6 @@ function App() {
     setPage('cart');
   }
 
-<<<<<<< HEAD
   if (page === 'review') {
     return (
       <div className="App">
@@ -27,8 +26,6 @@ function App() {
       </div>
     )
   }
-=======
->>>>>>> 5afbaf8e0b2fdd66521c6c62342692eef8ec2201
   if(page==='login'){
     return (
       <div className="App">
