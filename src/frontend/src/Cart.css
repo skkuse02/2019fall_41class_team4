@@ -12,7 +12,10 @@ body {
 .menu-bar{
   width: 630px;
   height: 45px;
-  background-color: #485E6C;
+  background-color: #4763a3;
+  /* background-color:#506EB3; */
+  /* background-color: #485E6C; */
+  /* background: #e7e6e6; */
   color: white;
   vertical-align: middle;
 }
@@ -78,16 +81,17 @@ body {
 }
 
 .blank-wrapper{
-  background: url("img/plus.png") no-repeat center center;
+  background: url("img/plus_blue2.png") no-repeat center center;
   width: 230px;
   height: 320px;
   padding: 15px;
   border-radius: 75px;
-  border: 5px dashed #252525;
+  border: 5px dashed #314470;
   cursor: pointer;
   float: left;
   margin: 20px;
   text-align: center;
+  color: #314470;
 }
 
 .el-wrapper:hover .h-bg {
@@ -311,7 +315,7 @@ body {
 	height:60px;
 	bottom:30px;
   right:30px;
-  background-color:#485E6C;
+  background-color:#4763a3;
   font-size: 15px;
 	color:#FFF;
 	border-radius:50px;

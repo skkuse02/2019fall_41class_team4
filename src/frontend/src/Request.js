@@ -26,6 +26,7 @@ function Request() {
 
     return (
         <div class="request-page">
+            <img class="logo-img-in-request" src="img/logo.png" />
             <div class="form">
                 <h2>Contact Us</h2>
 

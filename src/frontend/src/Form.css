@@ -2,18 +2,23 @@
 
 .login-page {
   width: 360px;
-  padding: 8% 0 0;
+  padding: 4% 0 0;
   margin: auto;
 }
 .request-page {
-  width: 500px;
   padding: 8% 0 0;
   margin: auto;
 }
 .logo-img{
+  background: #e7e6e6;
   width: 200px;
   height: 70px;
   margin-left: 80px;
+}
+.logo-img-in-request{
+  width: 200px;
+  height: 70px;
+  margin-left: 215px;
 }
 .form {
   position: relative;

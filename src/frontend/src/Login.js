@@ -2,7 +2,6 @@ import React from 'react';
 import './Form.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-import { bigIntLiteral } from '@babel/types';
 
 function HelpMessage(props) {
   function onScroller() {

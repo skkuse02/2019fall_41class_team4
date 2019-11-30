@@ -1,6 +1,11 @@
 import React from 'react';
 import './Cart.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
+function saveNotification() {
+    NotificationManager.info('','Save Completed', 1000);
+}
 
 function Cart(props) {
 
@@ -63,8 +68,9 @@ function Cart(props) {
                         </div>
                     </div>
                     <a href="#" class="save-btn">
-                        <h5 class="save-txt">SAVE</h5>
+                        <h5 class="save-txt" onClick={saveNotification}>SAVE</h5>
                     </a>
+                    <NotificationContainer/>
                 </div>
             </div>
         </div>
