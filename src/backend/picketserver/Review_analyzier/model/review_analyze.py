@@ -61,3 +61,21 @@ model.hybridize()
 # softmax cross entropy loss for classification
 loss_function = gluon.loss.SoftmaxCELoss()
 
+
+def evaluate_accuracy(model, data_iter, ctx=ctx):
+    acc = mx.metric.Accuracy()
+    i = 0
+    for i, (t,v,s, label) in enumerate(data_iter):
+        token_ids = t.as_in_context(ctx)
+        valid_length = v.as_in_context(ctx)
+        segment_ids = s.as_in_context(ctx)
+        label = label.as_in_context(ctx)
+        output = model(token_ids, segment_ids, valid_length.astype('float32'))
+        acc.update(preds=output, labels=label)
+        if i > 1000:
+            break
+        i += 1
+    return acc.get()[1]
+
+
+
