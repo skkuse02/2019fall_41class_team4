@@ -39,7 +39,7 @@ function Cart(props) {
                         <div class="not-delete-box">
                             <div class="h-bg">
                             </div>
-                            <a class="cart" href="#" onClick={props.openReview}>
+                            <a class="cart" href="#">
                                 <span class="add-to-cart">
                                     <span class="txt">Review</span>
                                 </span>
