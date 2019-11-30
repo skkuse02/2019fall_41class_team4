@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Login from './Login';
 import Request from './Request';
 import Cart from './Cart';
+import Review from './Review';
+
 import { REFUSED } from 'dns';
 
 function App() {
@@ -18,7 +20,9 @@ function App() {
   function openCart() {
     setPage('cart');
   }
-
+  function openReview() {
+    setPage('review');
+  }
   if (page === 'review') {
     return (
       <div className="App">
@@ -36,7 +40,7 @@ function App() {
   if (page === 'cart') {
     return (
       <div className="App">
-        <Cart openReview={openReview}></Cart>
+        <Cart openReview={openReview} openRequest={openRequest}></Cart>
       </div>
     )
   } else if (page === 'request'){
