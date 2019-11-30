@@ -11,7 +11,7 @@ function App() {
   //   document.getElementById("url-input").value = tab.url;
   // });
 
-  const [page, setPage] = useState('cart');
+  const [page, setPage] = useState('review');
 
   function openRequest() {
     setPage('request');
