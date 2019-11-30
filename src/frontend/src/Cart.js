@@ -36,39 +36,41 @@ function Cart(props) {
                                 </div>
                             </div>
                         </div>
-                        <div class="not-delete-box">
-                            <div class="h-bg">
+                        <div class="box-down-wrapper">
+                            <div class="box-down">
+                                <div class="h-bg">
+                                </div>
+                                <a class="cart" href="#" onClick={props.openReview}>
+                                    <span class="add-to-cart">
+                                        <span class="txt">Review</span>
+                                    </span>
+                                </a>
                             </div>
-                            <a class="cart" href="#" onClick={props.openReview}>
-                                <span class="add-to-cart">
-                                    <span class="txt">Review</span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="not-delete-box">
-                            <div class="h-bg">
-                            </div>
-                            <a class="cart" href="#">
-                                <span class="add-to-cart">
-                                    <span class="txt">Modify</span>
-                                </span>
-                            </a>
-                        </div>
-
-                        <div class="box-down">
-                            <div class="h-bg">
+                            <div class="box-down">
+                                <div class="h-bg">
+                                </div>
+                                <a class="cart" href="#">
+                                    <span class="add-to-cart">
+                                        <span class="txt">Modify</span>
+                                    </span>
+                                </a>
                             </div>
 
-                            <a class="cart" href="#">
-                                <span class="price">$120</span>
-                                <span class="add-to-cart">
-                                    <span class="txt">Delete</span>
-                                </span>
-                            </a>
+                            <div class="box-down">
+                                <div class="h-bg">
+                                </div>
+
+                                <a class="cart" href="#">
+                                    <span class="price">$120</span>
+                                    <span class="add-to-cart">
+                                        <span class="txt">Delete</span>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <a href="#" class="save-btn">
-                        <h5 class="save-txt" onClick={saveNotification}>SAVE</h5>
+                    <a href="#" class="save-btn" onClick={saveNotification}>
+                        <h5 class="save-txt">SAVE</h5>
                     </a>
                     <NotificationContainer/>
                 </div>

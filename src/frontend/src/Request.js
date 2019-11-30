@@ -19,7 +19,7 @@ function HelpMessage(props) {
 }
 
 function submitNotification() {
-    NotificationManager.info('Request Submit Completed','Thank You for Request', 1000);
+    NotificationManager.info('Request Submit Completed','Thank You for Request', 2000);
 }
 
 function Request(props) {
@@ -37,14 +37,14 @@ function Request(props) {
                     <input type="text" placeholder="username" />
                     <input id="url-input" class="url-input" type="url" placeholder="URL" />
                     <button class="close-btn" type="reset"></button>
-                    <button class="submit-btn" onClick={submitNotification}>Submit</button>
+                    <button class="submit-btn" type="button" onClick={submitNotification}>Submit</button>
                     <HelpMessage msg="More Request? " detail="Click Here!" />
                 </form>
 
                 <form class="other-request-form">
                     <input type="text" placeholder="username" />
                     <textarea type="text" placeholder="Message"></textarea>
-                    <button class="submit-btn" onClick={submitNotification}>Submit</button>
+                    <button class="submit-btn" type="button" onClick={submitNotification}>Submit</button>
                     <HelpMessage msg="URL Request? " detail="Click Here!" />
                 </form>
                 <NotificationContainer/>

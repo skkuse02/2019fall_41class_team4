@@ -23,7 +23,7 @@ function failNotification() {
 }
 
 function createNotification() {
-  NotificationManager.success('Sign in and Enjoy PICKET','Success Create Account', 1000);
+  NotificationManager.success('Sign in and Enjoy PICKET','Success Create Account', 2000);
 }
 
 function Login(props) {
@@ -36,14 +36,14 @@ function Login(props) {
           <input type="text" placeholder="name" />
           <input type="password" placeholder="password" />
           <input type="text" placeholder="email address" />
-          <button class="create-btn" type="button" onClick={createNotification}>create</button>
+          <button class="create-btn" type="reset" onClick={createNotification}>create</button>
           <HelpMessage msg="Already registered? " detail="Sign In" />
         </form>
         <form class="login-form">
           <h2>LOGIN</h2>
           <input type="text" placeholder="username" />
           <input type="password" placeholder="password" />
-          <button class="login-btn" onClick={props.openCart} type="button">login</button>
+          <button class="login-btn" type="button" onClick={props.openCart} type="button">login</button>
           <HelpMessage msg="Not registered? " detail="Create an account" />
         </form>
         <NotificationContainer/>
