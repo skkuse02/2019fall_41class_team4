@@ -25,4 +25,5 @@ urlpatterns = [
 	path('savecart/', include('authenticator.urls')),
 	path('item/', include('parserer.urls')),
 	path('review/', include('parserer.urls')),
+	path('query', include('queryhandler.urls')),
 ]
