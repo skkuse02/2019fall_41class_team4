@@ -40,9 +40,9 @@ function ItemCard(props) {
                     <div class="h-bg">
                     </div>
 
-                    <a class="cart" href="#">
+                    <a class="cart" href="#" onClick={() => props.removeItem(props.itemInfo.id)}>
                         <span class="price">{props.itemInfo.price}</span>
-                        <span class="add-to-cart" onClick={() => props.removeItem(props.itemInfo.id)}>
+                        <span class="add-to-cart" >
                             <span class="txt">Delete</span>
                         </span>
                     </a>
@@ -55,7 +55,7 @@ var id = 0;
 function Cart(props) {
     function saveNotification() {
         NotificationManager.info('', 'Save Completed', 1000);
-    }
+    } 
 
     const [item_info, setItemInfo] = useState(
         [{
@@ -66,8 +66,6 @@ function Cart(props) {
             price: "$100"
         }]
     );
-
-    
 
     function addItem() {
         setItemInfo(
@@ -80,12 +78,10 @@ function Cart(props) {
             })
         );
     }
+
     function removeItem(id) {
-        console.log(id);
         const items = item_info.filter(item_info => item_info.id !== id);
-        setItemInfo(
-            items
-        );
+        setItemInfo(items);
     }
 
     const addCart = item_info.map(
