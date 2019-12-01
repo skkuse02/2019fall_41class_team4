@@ -1,6 +1,6 @@
 import React from 'react';
 import './Form.css';
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
 function HelpMessage(props) {
@@ -23,7 +23,7 @@ function failNotification() {
 }
 
 function createNotification() {
-  NotificationManager.success('Sign in and Enjoy PICKET','Success Create Account', 2000);
+  NotificationManager.success('Sign in and Enjoy PICKET', 'Success Create Account', 2000);
 }
 
 function Login(props) {
@@ -46,7 +46,7 @@ function Login(props) {
           <button class="login-btn" type="button" onClick={props.openCart} type="button">login</button>
           <HelpMessage msg="Not registered? " detail="Create an account" />
         </form>
-        <NotificationContainer/>
+        <NotificationContainer />
       </div>
     </div>
   );
