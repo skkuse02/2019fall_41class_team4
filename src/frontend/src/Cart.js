@@ -51,7 +51,7 @@ function ItemCard(props) {
         </div>
     );
 }
-
+var id = 0;
 function Cart(props) {
     function saveNotification() {
         NotificationManager.info('', 'Save Completed', 1000);
@@ -59,47 +59,20 @@ function Cart(props) {
 
     const [item_info, setItemInfo] = useState(
         [{
-            id: 1,
+            id: 0,
             img_src: 'http://code.slicecrowd.com/labs/4/images/t-shirt.png',
             pname: "I feel like Pablo",
             pcompany: "Yeezy",
             price: "$100"
-        }
-            // },
-            // {
-            //     id: 2,
-            //     img_src: 'http://code.slicecrowd.com/labs/4/images/t-shirt.png',
-            //     pname: "I feel like Pablo",
-            //     pcompany: "Yeezy",
-            //     price: "$110"
-            // },
-            // {
-            //     id: 3,
-            //     img_src: 'http://code.slicecrowd.com/labs/4/images/t-shirt.png',
-            //     pname: "I feel like Pablo",
-            //     pcompany: "Yeezy",
-            //     price: "$120"
-            // },
-            // {
-            //     id: 4,
-            //     img_src: 'http://code.slicecrowd.com/labs/4/images/t-shirt.png',
-            //     pname: "I feel like Pablo",
-            //     pcompany: "Yeezy",
-            //     price: "$130"
-            // }
-        ]
+        }]
     );
 
-    var id = 1;
-    function getItemID() {
-        id++;
-        return id;
-    }
+    
 
     function addItem() {
         setItemInfo(
             item_info.concat({
-                id: getItemID(),
+                id: ++id,
                 img_src: 'http://code.slicecrowd.com/labs/4/images/t-shirt.png',
                 pname: "I feel like Pablo",
                 pcompany: "Yeezy",
@@ -108,10 +81,10 @@ function Cart(props) {
         );
     }
     function removeItem(id) {
-        console.log("here");
-
+        console.log(id);
+        const items = item_info.filter(item_info => item_info.id !== id);
         setItemInfo(
-            { item_info: item_info.filter(item_info => item_info.id !== id) }
+            items
         );
     }
 
