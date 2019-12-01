@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Cart.css';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import { getDiffieHellman } from 'crypto';
+
 function ItemCard(props) {
     return (
         <div class="el-wrapper">
@@ -40,7 +42,7 @@ function ItemCard(props) {
 
                     <a class="cart" href="#">
                         <span class="price">{props.itemInfo.price}</span>
-                        <span class="add-to-cart">
+                        <span class="add-to-cart" onClick={() => props.removeItem(props.itemInfo.id)}>
                             <span class="txt">Delete</span>
                         </span>
                     </a>
@@ -50,13 +52,6 @@ function ItemCard(props) {
     );
 }
 
-/*
-const [value, setValue] = useState(0)
-
-const st = useState(0)
-const value = st[0]
-const setValue = st[1]
-*/
 function Cart(props) {
     function saveNotification() {
         NotificationManager.info('', 'Save Completed', 1000);
@@ -64,20 +59,47 @@ function Cart(props) {
 
     const [item_info, setItemInfo] = useState(
         [{
+            id: 1,
             img_src: 'http://code.slicecrowd.com/labs/4/images/t-shirt.png',
             pname: "I feel like Pablo",
             pcompany: "Yeezy",
-            price: "$120"
-        }]
+            price: "$100"
+        }
+            // },
+            // {
+            //     id: 2,
+            //     img_src: 'http://code.slicecrowd.com/labs/4/images/t-shirt.png',
+            //     pname: "I feel like Pablo",
+            //     pcompany: "Yeezy",
+            //     price: "$110"
+            // },
+            // {
+            //     id: 3,
+            //     img_src: 'http://code.slicecrowd.com/labs/4/images/t-shirt.png',
+            //     pname: "I feel like Pablo",
+            //     pcompany: "Yeezy",
+            //     price: "$120"
+            // },
+            // {
+            //     id: 4,
+            //     img_src: 'http://code.slicecrowd.com/labs/4/images/t-shirt.png',
+            //     pname: "I feel like Pablo",
+            //     pcompany: "Yeezy",
+            //     price: "$130"
+            // }
+        ]
     );
 
-    const addCart = item_info.map(
-        (item) => (<ItemCard itemInfo={item} openReview={props.openReview}></ItemCard>)
-    );
+    var id = 1;
+    function getItemID() {
+        id++;
+        return id;
+    }
 
-    function AddItem() {
+    function addItem() {
         setItemInfo(
             item_info.concat({
+                id: getItemID(),
                 img_src: 'http://code.slicecrowd.com/labs/4/images/t-shirt.png',
                 pname: "I feel like Pablo",
                 pcompany: "Yeezy",
@@ -85,6 +107,18 @@ function Cart(props) {
             })
         );
     }
+    function removeItem(id) {
+        console.log("here");
+
+        setItemInfo(
+            { item_info: item_info.filter(item_info => item_info.id !== id) }
+        );
+    }
+
+    const addCart = item_info.map(
+        (item) => (<ItemCard itemInfo={item} openReview={props.openReview} removeItem={removeItem}></ItemCard>)
+    );
+
     return (
         <div class="container page-wrapper">
             <div class="menu-bar">
@@ -98,7 +132,7 @@ function Cart(props) {
             </div>
             <div class="page-inner">
                 <div class="row">
-                    <div class="blank-wrapper" onClick={AddItem}>
+                    <div class="blank-wrapper" onClick={addItem}>
                         <h1>Add to Cart</h1>
                     </div>
                     {addCart}
