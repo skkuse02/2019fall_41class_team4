@@ -1,3 +1,4 @@
+import sys
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from .models import Tag
@@ -35,16 +36,18 @@ class Parserer:
 		_bs = self.openUrl()
 
 		# get Item Name
-		_name = _bs.find(class_ = self.m_tags['name_tag']).get_text()
+		exec(self.m_tags['name_tag'])	# _bs.find(class_ = self.m_tags['name_tag']).get_text()
+		self._name = self._name.strip()
 
 		# get Item price
-		_price = _bs.find(class_ = self.m_tags['price_tag']).get_text()
+		exec(self.m_tags['price_tag'])  #_bs.find(class_ = self.m_tags['price_tag']).get_text()
+		self._price = self._price.split('원')[0]
 
 		# get Item Image
-		_img = _bs.select(self.m_tags['image_tag'])
-		_img = _img[0].get('src')
+		exec(self.m_tags['image_tag'])	#_bs.select(self.m_tags['image_tag'])
+		self._img = self._img[0].get('src')
 
-		return {'domain_name':self.m_tags['item_domain'], 'item_url':self.m_url, 'item_name':_name, 'item_price':_price, 'item_image':_img}
+		return {'domain_name':self.m_tags['item_domain'], 'item_url':self.m_url, 'item_name':self._name, 'item_price':self._price, 'item_image':self._img}
 
 	def parseReview(self):
 		_bs = self.openUrl()
