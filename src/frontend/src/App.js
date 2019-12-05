@@ -12,7 +12,7 @@ function App() {
   //   document.getElementById("url-input").value = tab.url;
   // });
 
-  const [page, setPage] = useState('cart');
+  const [page, setPage] = useState('login');
 
   function openRequest() {
     setPage('request');
@@ -30,7 +30,7 @@ function App() {
       </div>
     )
   }
-  if(page==='login'){
+  if (page === 'login') {
     return (
       <div className="App">
         <Login openCart={openCart}></Login>
@@ -43,7 +43,7 @@ function App() {
         <Cart openReview={openReview} openRequest={openRequest}></Cart>
       </div>
     )
-  } else if (page === 'request'){
+  } else if (page === 'request') {
     return (
       <div className="App">
         <Request openCart={openCart}></Request>

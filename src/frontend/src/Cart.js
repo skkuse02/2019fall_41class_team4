@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Cart.css';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-import { getDiffieHellman } from 'crypto';
+
 
 function ItemCard(props) {
     return (
@@ -29,7 +29,7 @@ function ItemCard(props) {
                 <div class="box-down">
                     <div class="h-bg">
                     </div>
-                    <a class="cart" href="#">
+                    <a class="cart" href="#" onClick={props.handleClickOpen}>
                         <span class="add-to-cart">
                             <span class="txt">Modify</span>
                         </span>
@@ -51,11 +51,12 @@ function ItemCard(props) {
         </div>
     );
 }
+
 var id = 0;
 function Cart(props) {
     function saveNotification() {
         NotificationManager.info('', 'Save Completed', 1000);
-    } 
+    }
 
     const [item_info, setItemInfo] = useState(
         [{
