@@ -25,7 +25,7 @@ SECRET_KEY = 'qud#n!8qn)r0a*e@=xsv-^9ev1jztle4_7t^xoixw9pykb)406'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '115.145.179.201', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '115.145.179.201', 'ec2-13-125-249-233.ap-northeast-2.compute.amazonaws.com', '.pythonanywhere.com']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +51,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'corsheaders.middleware.CorsMiddleware',
+	'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'picketserver.urls'
 

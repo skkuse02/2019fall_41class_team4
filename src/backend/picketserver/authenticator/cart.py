@@ -7,7 +7,7 @@ class Cart:
 		self.m_id = _id
 
 	def makeCart(self, _data):			
-		_cart = _data['cart']
+		_cart = _data['user_cart']
 
 		for item in _cart:
 			_item = Product()
@@ -20,9 +20,9 @@ class Cart:
 			self.m_items.append(_item)
 	
 	def saveCart(self):
+		_user = User.objects.get(user_id = self.m_id) # to check is registered user
 		self.deleteCart() # necessary?
 
-		_user = User.objects.get(user_id = self.m_id)
 		for item in self.m_items:
 			_item = Item(user_id = _user, item_url = item.getUrl(), 
 					item_domain = item.getDomain(), item_name = item.getName(),
@@ -30,7 +30,7 @@ class Cart:
 			_item.save()
 
 	def loadCart(self):
-#		_user = User.objects.get(user_id = self.m_id)
+		_user = User.objects.get(user_id = self.m_id) # to check is registered user
 		_items = Item.objects.filter(user_id = self.m_id)
 
 		for item in _items:

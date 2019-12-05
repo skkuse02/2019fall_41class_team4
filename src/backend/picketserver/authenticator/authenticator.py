@@ -35,7 +35,7 @@ class Authenticator:
 			User.objects.get(user_id = self.m_id)
 			return {"status":"fail", "message":"This ID is already in Use. Please re-enter."}
 		except:
-			user = User(user_id = self.m_id, user_pw = self.m_pw)
+			user = User(user_id = self.m_id, user_pw = self.m_pw, user_email = self.m_email)
 			user.save()
 			# ??? send registration email to user ??? 
 			return {"status":"success", "message":"You have successfully registered."}		

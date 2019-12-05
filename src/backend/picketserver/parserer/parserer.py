@@ -5,11 +5,11 @@ from .models import Tag
 
 class Parserer:
 
-	def __init__(self, _url):
-		self.m_url = _url
+	def __init__(self, _data):
+		self.m_url = _data['item_url']
 		self.m_domain = None
 		self.m_tags = {'item_domain':'', 'name_tag':'', 'price_tag':'', 'image_tag':''}
-	
+
 	def openUrl(self):
 		_html = urlopen(self.m_url)
 		_bs = BeautifulSoup(_html, 'html.parser')

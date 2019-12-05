@@ -12,25 +12,32 @@ class QueryHandler:
 		try:
 			_index = _list.index('co') - 1
 			self.m_domain = _list[_index]
-			return
 		except:
 			pass
 
 		try:
 			_index = _list.index('com') - 1
-			self.m_domain = _lint[_index]
-			return
+			self.m_domain = _list[_index]
 		except:
 			pass
 
 	def queryDomain(self, _data):
 		self.m_url = _data['query_url']
-		parseDomain()
-
-		domainquery = QueryDomain('original_url' = self.m_url, 'domain_url' = self.m_domain)
-		domainquery.save()
+		self.parseDomain()
+			
+		try:
+			domainquery = QueryDomain(original_url = self.m_url, domain_url = self.m_domain)
+			domainquery.save()
+			return {"status":"success", "message":"Domain query accepted"} 
+		except:
+			return {"status":"fail", "message":"Not valid url"}
 
 	def queryElse(self, _data):
 		self.m_comment = _data['query_comment']
 
-		elsequery = QueryElse('user_comment' = self.m_comment)
+		try:
+			elsequery = QueryElse(user_comment = self.m_comment)
+			elsequery.save()
+			return {"status":"success", "message":"Else query accepted"}
+		except:
+			return {"status":"fail", "message":"Else query DB error"}
