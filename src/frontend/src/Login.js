@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Form.css';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import axios from "axios";
 
 function HelpMessage(props) {
   function onScroller() {
@@ -27,6 +28,34 @@ function createNotification() {
 }
 
 function Login(props) {
+
+  const [state, setState] = useState({
+    name: "",
+    password: "",
+    email: ""
+  });
+
+  const LoginServer = "http://ec2-13-125-249-233.ap-northeast-2.compute.amazonaws.com:8080/login";
+
+  function handleNameChange(e) {
+    setState({ fields: { name: e.target.value } });
+  }
+  function handlePasswordChange(e) {
+    setState({ password: e.target.value });
+  }
+  function loginHandler() {
+    console.log(state.name);
+    axios.post(LoginServer, {
+      user_id: state.name,
+      user_pw: state.password
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log('err', error);
+      });
+  }
   return (
     <div class="login-page">
       <img class="logo-img" src="img/logo.png" />
@@ -41,9 +70,17 @@ function Login(props) {
         </form>
         <form class="login-form">
           <h2>LOGIN</h2>
-          <input type="text" placeholder="username" />
-          <input type="password" placeholder="password" />
-          <button class="login-btn" type="button" onClick={props.openCart} type="button">login</button>
+          <input
+            type="text"
+            placeholder="username"
+            value={state.name}
+            onChange={handleNameChange} />
+          <input
+            type="password"
+            placeholder="password"
+            value={state.password}
+            onChange={handlePasswordChange} />
+          <button class="login-btn" type="reset" onClick={loginHandler} type="button">login</button>
           <HelpMessage msg="Not registered? " detail="Create an account" />
         </form>
         <NotificationContainer />
