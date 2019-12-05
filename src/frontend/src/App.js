@@ -12,7 +12,7 @@ function App() {
   //   document.getElementById("url-input").value = tab.url;
   // });
 
-  const [page, setPage] = useState('login');
+  const [page, setPage] = useState('request');
 
   function openRequest() {
     setPage('request');

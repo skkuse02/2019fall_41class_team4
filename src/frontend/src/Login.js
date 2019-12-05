@@ -45,7 +45,6 @@ function Login(props) {
       user_pw: password
     })
       .then(function (response) {
-        console.log(response.data);
         if(response.data.status ==='fail') Notification('login-fail',response.data.message);
       })
       .catch(function (error) {
