@@ -46,6 +46,7 @@ function Login(props) {
     })
       .then(function (response) {
         if(response.data.status ==='fail') Notification('login-fail',response.data.message);
+        else props.openCart();
       })
       .catch(function (error) {
         console.log('err', error);

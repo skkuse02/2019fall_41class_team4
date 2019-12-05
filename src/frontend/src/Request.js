@@ -24,7 +24,6 @@ function Notification(type,message) {
     else{
         NotificationManager.error(message, 'Request Faild', 2700, () => {});
     }
-    
 }
 
 function Request(props) {
@@ -70,7 +69,7 @@ function Request(props) {
 
                 <form class="url-request-from">
                     <input type="text" placeholder="username" />
-                    <input id="url-input" class="url-input" type="url" placeholder="URL" value={url} onChange={(e) => setUrl(e.target.value)} />
+                    <input id="url-input" class="url-input" type="url" placeholder="URL" onChange={(e) => setUrl(e.target.value)} />
                     <button class="close-btn" type="reset"></button>
                     <button class="submit-btn" type="reset" onClick={urlSubmitHandler}>Submit</button>
                     <HelpMessage msg="More Request? " detail="Click Here!" />
@@ -78,7 +77,7 @@ function Request(props) {
 
                 <form class="other-request-form">
                     <input type="text" placeholder="username" />
-                    <textarea type="text" placeholder="Message" value={others} onChange={(e) => setOthers(e.target.value)}></textarea>
+                    <textarea type="text" placeholder="Message" onChange={(e) => setOthers(e.target.value)}></textarea>
                     <button class="submit-btn" type="reset" onClick={othersSubmitHandler}>Submit</button>
                     <HelpMessage msg="URL Request? " detail="Click Here!" />
                 </form>
