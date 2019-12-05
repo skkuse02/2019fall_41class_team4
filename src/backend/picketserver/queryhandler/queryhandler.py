@@ -12,14 +12,18 @@ class QueryHandler:
 		try:
 			_index = _list.index('co') - 1
 			self.m_domain = _list[_index]
+			return
 		except:
 			pass
 
 		try:
 			_index = _list.index('com') - 1
 			self.m_domain = _list[_index]
+			return
 		except:
 			pass
+
+		self.m_domain = 'null'
 
 	def queryDomain(self, _data):
 		self.m_url = _data['query_url']
