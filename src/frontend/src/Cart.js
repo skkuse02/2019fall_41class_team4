@@ -37,7 +37,7 @@ function ItemCard(props) {
                 <div class="box-down">
                     <div class="h-bg">
                     </div>
-                    <a class="cart" onClick={props.onModify}>
+                    <a class="cart" onClick={() => props.onModify(props.itemInfo)}>
                         <span class="add-to-cart">
                             <span class="txt">Modify</span>
                         </span>
@@ -60,8 +60,6 @@ function ItemCard(props) {
     );
 }
 
-var id = 0;
-
 function Cart(props) {
     function Notification(type, message) {
         if (type === 'parsing-fail') NotificationManager.error(message, 'Failed to add cart', 2700, () => { });
@@ -75,14 +73,25 @@ function Cart(props) {
     const [user_id, setID] = useState('');
     const [url, setUrl] = useState('');
     const [isModalOpen, setModalOpen] = useState(false);
+    const [modifyIndex, setModifyIndex] = useState(-1);
 
 
     const openModal = () => {
         setModalOpen(true);
     }
 
-    const closeModal = () => {
+    const closeModal = (modify_item_info) => {
         setModalOpen(false);
+        if (modify_item_info) {
+            item_info[modifyIndex].item_domain = modify_item_info.domain_name;
+            item_info[modifyIndex].item_name = modify_item_info.item_name;
+            item_info[modifyIndex].item_price = modify_item_info.item_price;
+        }
+    }
+
+    function onModify(itemInfo) {
+        setModalOpen(true);
+        setModifyIndex(item_info.indexOf(itemInfo));
     }
 
     useEffect(() => {
@@ -107,10 +116,6 @@ function Cart(props) {
             setUrl(tab.url);
         });
     }, [])
-
-    function onModify() {
-        setModalOpen(true);
-    }
 
     function addItem() {
         axios.post(server + "/item", { item_url: url })
