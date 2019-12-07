@@ -14,7 +14,7 @@ function App() {
   const [page, setPage] = useState('login');
 
   loadLoginInfo().then(id => {
-    if (id) {
+    if (id && page === 'login') {
       console.log(id);
       setPage('cart');
     }

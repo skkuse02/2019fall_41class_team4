@@ -6,11 +6,14 @@ import 'react-notifications/lib/notifications.css';
 import axios from "axios";
 import { loadLoginInfo } from "./authlib";
 
+function openUrl(url) {
+    window.open(url);
+}
 
 function ItemCard(props) {
     return (
         <div class="el-wrapper">
-            <div class="box-up">
+            <div class="box-up" onClick={() => openUrl(props.itemInfo.item_url)}>
                 <img class="img" src={props.itemInfo.item_image} alt="" />
                 <div class="img-info">
                     <div class="info-inner">
@@ -58,7 +61,6 @@ function ItemCard(props) {
 var id = 0;
 
 function Cart(props) {
-
     function Notification(type, message) {
         if (type === 'parsing-fail') NotificationManager.error(message, 'Failed to add cart', 2700, () => { });
         if (type === 'load-fail') NotificationManager.error(message, 'Failed to load cart', 2700, () => { });

@@ -142,6 +142,7 @@ body {
   position: relative;
   overflow: hidden;
   text-align: center;
+  cursor: pointer;
 }
 .box-down-wrapper{
   bottom:10px;
