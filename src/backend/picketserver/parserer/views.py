@@ -37,4 +37,12 @@ def select(_request):
 
 	if 'review' in _path:
 		print("[Review Status]")
-		return _parserer.parseReview()
+		try:
+			_response = _parserer.parseReview()
+			_response['status'] = 'success'
+			_response['message'] = 'Review parse success'
+		except:
+			_response = {}
+			_response['status'] = 'fail'
+			_response['message'] = 'This item does not support review'
+		return _response

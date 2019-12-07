@@ -36,7 +36,6 @@ class Parserer:
 			pass
 
 		try:
-#			_index = _list.index('com') - 1
 			self.m_domain = _list[1]
 			return
 		except:
@@ -75,8 +74,17 @@ class Parserer:
 		
 		exec(self.m_rtags['review_tag'].encode('ascii').decode('unicode-escape'))
 		
+		# run machine learning
 		self._class = [0] * len(self._list)
-		return {'review':self._list, 'class':self._class, 'status':'success', 'message':'review tag'}
+
+		_positive = []
+		_negative = []
+		for i in range(len(self._list)):
+			if self._class[i] == 0:
+				_positive.append(self._list[i])
+			else:
+				_negative.append(self._list[i])
+		return {'positive_review':_positive, 'negative_review':_negative, 'status':'success', 'message':'review tag'}
 
 	def recvTags(self):
 		tag = Tag.objects.get(domain_name = self.m_domain)
