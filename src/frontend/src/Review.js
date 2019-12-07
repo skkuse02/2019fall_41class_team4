@@ -3,6 +3,7 @@ import './Review.css';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import axios from "axios";
+import { Badge } from 'styled-badge-component';
 
 function ReviewContent(props) {
   return (
@@ -69,8 +70,14 @@ function Review(props) {
       </div>
       <img class="review-img" src="img/review.png" />
       <ul class="ks-cboxtags">
-        <li><input type="checkbox" id="checkboxPositive" name="category" onChange={checkPositive} /><label for="checkboxPositive">Positive</label></li>
-        <li><input type="checkbox" id="checkboxNegative" name="category" onChange={checkNegative} /><label for="checkboxNegative">Negative</label></li>
+        <li><input type="checkbox" id="checkboxPositive" name="category" onChange={checkPositive} />
+          <label for="checkboxPositive">
+            Positive <Badge primary pill>{positiveReview.length}</Badge>
+          </label></li>
+        <li><input type="checkbox" id="checkboxNegative" name="category" onChange={checkNegative} />
+          <label for="checkboxNegative">
+            Negative <Badge primary pill>{negativeReview.length}</Badge>
+          </label></li>
       </ul>
       {addReviews}
       <NotificationContainer />
