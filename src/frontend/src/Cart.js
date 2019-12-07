@@ -58,15 +58,15 @@ function ItemCard(props) {
 var id = 0;
 
 function Cart(props) {
+
     function Notification(type, message) {
         if (type === 'parsing-fail') NotificationManager.error(message, 'Failed to add cart', 2700, () => { });
         if (type === 'load-fail') NotificationManager.error(message, 'Failed to load cart', 2700, () => { });
         if (type === 'save-fail') NotificationManager.error(message, 'Failed to save cart', 2700, () => { });
         if (type === 'save-success') NotificationManager.info('', 'Save Completed', 1000);
     }
+
     const server = "http://ec2-13-125-249-233.ap-northeast-2.compute.amazonaws.com:8080";
-
-
     const [item_info, setItemInfo] = useState([]);
     const [user_id, setID] = useState('');
     const [url, setUrl] = useState('');

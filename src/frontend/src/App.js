@@ -8,9 +8,9 @@ import Review from './Review';
 import { REFUSED } from 'dns';
 
 function App() {
-  // chrome.tabs.getSelected(null, function (tab) {
-  //   document.getElementById("url-input").value = tab.url;
-  // });
+  chrome.tabs.getSelected(null, function (tab) {
+    document.getElementById("url-input").value = tab.url;
+  });
 
   const [page, setPage] = useState('login');
 

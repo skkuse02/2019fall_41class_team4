@@ -150,6 +150,8 @@ body {
 }
 .el-wrapper .img {
   padding: 20px 0;
+  height: 200px;
+  object-fit: scale-down;
   -webkit-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
   -moz-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
   -o-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
@@ -194,7 +196,7 @@ body {
   /* ease-out */
   position: absolute;
   width: 100%;
-  bottom: 25px;
+  bottom: 0px;
 }
 
 .info-inner .p-name,
