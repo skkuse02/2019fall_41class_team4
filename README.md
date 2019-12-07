@@ -2,10 +2,12 @@
 ### Integrated shopping mall service
 
 ## Running Backend
-0. check the environmnet:
+0. check dependencies:
 ```
-$ python version 3.x.x
-$ django version 2.x.x
+$ sudo install python3
+$ sudo install django
+$ sudo install selenium
+$ sudo install BeautifulSoup4
 ```
 1. clone the repo:
 ```
