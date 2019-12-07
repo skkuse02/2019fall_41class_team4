@@ -6,21 +6,7 @@ import mxnet as mx
 
 from kobert.mxnet_kobert import get_mxnet_kobert_model
 from kobert.utils import get_tokenizer
-
-
-class BERTDataset(mx.gluon.data.Dataset):
-    def __init__(self, dataset, sent_idx, label_idx, bert_tokenizer, max_len, pad, pair):
-        transform = nlp.data.BERTSentenceTransform(bert_tokenizer, max_seq_length=max_len, pad=pad, pair=pair)
-        sent_dataset = gluon.data.SimpleDataset([[i[sent_idx], ] for i in dataset])
-        self.sentences = sent_dataset.transform(transform)
-        self.labels = gluon.data.SimpleDataset(
-            [np.array(np.int32(i[label_idx])) for i in dataset])
-
-    def __getitem__(self, i):
-        return self.sentences[i] + (self.labels[i], )
-
-    def __len__(self):
-        return len(self.labels)
+from .Bertdata import BERTDataset
 
 
 class BERTClassifier(nn.Block):
@@ -63,31 +49,25 @@ bert_base, vocab = get_mxnet_kobert_model(use_decoder=False, use_classifier=Fals
 tokenizer = get_tokenizer()
 tok = nlp.data.BERTSPTokenizer(tokenizer, vocab, lower=False)
 
-dataset_train = nlp.data.TSVDataset("ratings_train.txt", field_indices=[1, 2], num_discard_samples=1)
-dataset_test = nlp.data.TSVDataset("ratings_test.txt", field_indices=[1, 2], num_discard_samples=1)
+dataset_train = nlp.data.TSVDataset("electric_dataset.txt", field_indices=[1, 2], num_discard_samples=1)
 
 max_len = 128
 data_train = BERTDataset(dataset_train, 0, 1, tok, max_len, True, False)
-data_test = BERTDataset(dataset_test, 0, 1, tok, max_len, True, False)
 
 model = BERTClassifier(bert_base, num_classes=2, dropout=0.1)
 
 model.classifier.initialize(init=mx.init.Normal(0.02), ctx=ctx)
 model.hybridize()
-model_acc = 0
+
 # softmax cross entropy loss for classification
 loss_function = gluon.loss.SoftmaxCELoss()
-
-metric = mx.metric.Accuracy()
 
 batch_size = 32
 lr = 5e-5
 
 train_dataloader = mx.gluon.data.DataLoader(data_train, batch_size=batch_size)
-test_dataloader = mx.gluon.data.DataLoader(data_test, batch_size=int(batch_size/2))
 
 trainer = gluon.Trainer(model.collect_params(), 'bertadam', {'learning_rate': lr, 'epsilon': 1e-9, 'wd':0.01})
-
 log_interval = 4
 num_epochs = 5
 
