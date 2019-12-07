@@ -8,7 +8,6 @@ import json
 def control(_request):
 	_response = select(_request)
 	print(_response)
-#_response.encode('utf-8')
 	return JsonResponse(_response)
 
 def select(_request): 
@@ -20,15 +19,14 @@ def select(_request):
 		print(_data)
 	except:
 		_response = {'status':'fail', 'message':'Request form error'}
+		return _response
 
-	parserer = Parserer(_data)
-	parserer.parseDomain()
-	parserer.recvTags()
+	_parserer = Parserer(_data)
 	
 	if 'item' in _path:
 		print("[Item Status]")
 		try:
-			_response = parserer.parseItem()
+			_response = _parserer.parseItem()
 			_response['status'] = 'success'
 			_response['message'] = 'Item parse success'
 		except:
@@ -39,4 +37,4 @@ def select(_request):
 
 	if 'review' in _path:
 		print("[Review Status]")
-		return praserer.parseReview()
+		return _parserer.parseReview()

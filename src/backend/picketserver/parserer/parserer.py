@@ -1,7 +1,8 @@
 import sys
 from urllib.request import urlopen
+from selenium import webdriver
 from bs4 import BeautifulSoup
-from .models import Tag
+from .models import Tag, RTag
 
 class Parserer:
 
@@ -9,12 +10,21 @@ class Parserer:
 		self.m_url = _data['item_url']
 		self.m_domain = None
 		self.m_tags = {'item_domain':'', 'name_tag':'', 'price_tag':'', 'image_tag':''}
+		self.m_rtags = {'pagenum_tag':'', 'review_tag':''}
 
 	def openUrl(self):
 		_html = urlopen(self.m_url)
 		_bs = BeautifulSoup(_html, 'html.parser')
 		return _bs
 	
+	def openWebdriver(self):
+		_options = webdriver.ChromeOptions()
+		_options.add_argument('headless')
+		
+		_driver = webdriver.Chrome('/home/ubuntu/2019fall_41class_team4/src/backend/picketserver/parserer/chromedriver', options=_options)
+		_driver.get(self.m_url)
+		return _driver
+
 	def parseDomain(self):
 		_list = self.m_url.split('.')
 
@@ -26,42 +36,59 @@ class Parserer:
 			pass
 
 		try:
-			_index = _list.index('com') - 1
-			self.m_domain = _list[_index]
+#			_index = _list.index('com') - 1
+			self.m_domain = _list[1]
 			return
 		except:
 			pass
 
+		self.m_domain = 'null'
+	
 	def parseItem(self):
+		self.parseDomain()
+		self.recvTags()
 		_bs = self.openUrl()
 
 		# get Item Name
-		exec(self.m_tags['name_tag'])	# _bs.find(class_ = self.m_tags['name_tag']).get_text()
+		exec(self.m_tags['name_tag'])
 		self._name = self._name.strip()
 
 		# get Item price
-		exec(self.m_tags['price_tag'])  #_bs.find(class_ = self.m_tags['price_tag']).get_text()
+		exec(self.m_tags['price_tag'])
 		self._price = self._price.split('원')[0]
 
 		# get Item Image
-		exec(self.m_tags['image_tag'])	#_bs.select(self.m_tags['image_tag'])
-		self._img = self._img[0].get('src')
+		exec(self.m_tags['image_tag'].encode('ascii').decode('unicode-escape'))
 
 		return {'domain_name':self.m_tags['item_domain'], 'item_url':self.m_url, 'item_name':self._name, 'item_price':self._price, 'item_image':self._img}
 
 	def parseReview(self):
-		_bs = self.openUrl()
-		pass
+		self.parseDomain()
+		self.recvRTags()
+		self._driver = self.openWebdriver()
+		self._list = []
+
+		exec(self.m_rtags['pagenum_tag'].encode('ascii').decode('unicode-escape'))
+		
+		if self._pagenum > 5:
+			self._pagenum = 5
+		
+		exec(self.m_rtags['review_tag'].encode('ascii').decode('unicode-escape'))
+		
+		self._class = [0] * len(self._list)
+		return {'review':self._list, 'class':self._class, 'status':'success', 'message':'review tag'}
 
 	def recvTags(self):
-		try:
-			tag = Tag.objects.get(domain_name = self.m_domain)
-			self.m_tags['item_domain'] = tag.tag_domain
-			self.m_tags['name_tag'] = tag.tag_name
-			self.m_tags['price_tag'] = tag.tag_price
-			self.m_tags['image_tag'] = tag.tag_image
-		except:
-			return {'status':'fail', 'message':"This shopping mall site is not supported"}
+		tag = Tag.objects.get(domain_name = self.m_domain)
+		self.m_tags['item_domain'] = tag.tag_domain
+		self.m_tags['name_tag'] = tag.tag_name
+		self.m_tags['price_tag'] = tag.tag_price
+		self.m_tags['image_tag'] = tag.tag_image
+	
+	def recvRTags(self):
+		rtag = RTag.objects.get(domain_name = self.m_domain)
+		self.m_rtags['pagenum_tag'] = rtag.tag_pagenum
+		self.m_rtags['review_tag'] = rtag.tag_review
 
 	def setUrl(self,_url):
 		self.m_url = _url
