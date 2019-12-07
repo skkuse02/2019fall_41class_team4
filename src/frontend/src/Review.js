@@ -1,42 +1,79 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Review.css';
-import { tsPropertySignature } from '@babel/types';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
+import axios from "axios";
 
-function checkAllCheckbox(event){
-  const allCheckboxChecked = event.target.checked;
-  var categories = document.getElementsByName("category");
-  if(allCheckboxChecked){
-    for(var i in categories){
-      if(categories[i].checked == false) categories[i].checked =true;
-    }
-  } else{
-    for(var i in categories){
-      if(categories[i].checked == true) categories[i].checked =false;
+function ReviewContent(props) {
+  return (
+    <div class="review">
+      <p class="review-txt">{props.reviews}</p>
+    </div>
+  )
+}
+function Review(props) {
+
+  const [positiveReview, setPositiveReview] = useState([]);
+  const [negativeReview, setNegativeReview] = useState([]);
+  const [review, setReview] = useState([]);
+  const server = "http://ec2-13-125-249-233.ap-northeast-2.compute.amazonaws.com:8080";
+
+  function Notification(type, message) {
+    if (type === 'fail') NotificationManager.error(message, 'Failed to laod Review', 2700, () => { });
+    if (type === 'none') NotificationManager.info('', message, 2000);
+  }
+
+  useEffect(() => {
+    axios.post(server + "/review", {
+      item_url: props.itemUrl
+    })
+      .then(function (response) {
+        console.log(response);
+        if (response.data.status === 'fail') Notification("fail", response.data.message);
+        else if (response.data.status === 'none') Notification("none", response.data.message)
+        else {
+          setPositiveReview(response.data.positive_review);
+          setNegativeReview(response.data.negative_review);
+        }
+      })
+      .catch(function (error) {
+        console.log('err', error);
+      });
+  }, [])
+
+  function checkPositive(event) {
+    const positiveChecked = event.target.checked;
+    if (positiveChecked) setReview(positiveReview);
+    else {
+      setReview([]);
     }
   }
-}
 
-function Review(props) {
+  function checkNegative(event) {
+    const negativeChecked = event.target.checked;
+    if (negativeChecked) setReview(negativeReview);
+    else {
+      setReview([]);
+    }
+  }
+
+
+  const addReviews = review.map(
+    (review) => <ReviewContent reviews={review}></ReviewContent>
+  );
+
   return (
     <div class="container">
       <div class="wrap">
-  		  <a href="#" class="back-btn" onClick={props.openCart}>Back to Cart</a>
-	    </div>
+        <a href="#" class="back-btn" onClick={props.openCart}>Back to Cart</a>
+      </div>
       <img class="review-img" src="img/review.png" />
       <ul class="ks-cboxtags">
-        <li><input type="checkbox" id="checkboxAll" value="All" onChange={checkAllCheckbox}/><label for="checkboxAll">Select All</label></li>
-        <li><input type="checkbox" id="checkboxDelivery" name="category" /><label for="checkboxDelivery">Delivery</label></li>
-        <li><input type="checkbox" id="checkboxQuality" name="category" /><label for="checkboxQuality">Quality</label></li>
-        <li><input type="checkbox" id="checkboxSize" name="category" /><label for="checkboxSize">Size</label></li>
-        <li><input type="checkbox" id="checkboxAS" name="category" /><label for="checkboxAS">Afeter Service</label></li>
+        <li><input type="checkbox" id="checkboxPositive" name="category" onChange={checkPositive} /><label for="checkboxPositive">Positive</label></li>
+        <li><input type="checkbox" id="checkboxNegative" name="category" onChange={checkNegative} /><label for="checkboxNegative">Negative</label></li>
       </ul>
-      <div class="review">
-        <p class="review-txt">This is Review</p>
-      </div>
-      <div class="review">
-        <p class="review-txt">This is review</p>
-      </div>
-      
+      {addReviews}
+      <NotificationContainer />
     </div>
   );
 }

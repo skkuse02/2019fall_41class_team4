@@ -26,7 +26,7 @@ function ItemCard(props) {
                 <div class="box-down">
                     <div class="h-bg">
                     </div>
-                    <a class="cart" href="#" onClick={props.openReview}>
+                    <a class="cart" href="#" onClick={() => props.openReview(props.itemInfo.item_url)}>
                         <span class="add-to-cart">
                             <span class="txt">Review</span>
                         </span>
