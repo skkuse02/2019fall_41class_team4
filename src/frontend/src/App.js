@@ -4,15 +4,21 @@ import Login from './Login';
 import Request from './Request';
 import Cart from './Cart';
 import Review from './Review';
-
-import { REFUSED } from 'dns';
+import { loadLoginInfo, logout } from './authlib';
 
 function App() {
   chrome.tabs.getSelected(null, function (tab) {
     document.getElementById("url-input").value = tab.url;
   });
-
+  window.logout = logout;
   const [page, setPage] = useState('login');
+
+  loadLoginInfo().then(id => {
+    if (id) {
+      console.log(id);
+      setPage('cart');
+    }
+  })
 
   function openRequest() {
     setPage('request');
