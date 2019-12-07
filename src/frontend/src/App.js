@@ -5,6 +5,7 @@ import Request from './Request';
 import Cart from './Cart';
 import Review from './Review';
 import { loadLoginInfo, logout } from './authlib';
+import { tsPropertySignature } from '@babel/types';
 
 function App() {
   chrome.tabs.getSelected(null, function (tab) {
@@ -12,6 +13,7 @@ function App() {
   });
   window.logout = logout;
   const [page, setPage] = useState('login');
+  const [url, setUrl] = useState('');
 
   loadLoginInfo().then(id => {
     if (id && page === 'login') {
@@ -26,13 +28,14 @@ function App() {
   function openCart() {
     setPage('cart');
   }
-  function openReview() {
+  function openReview(url) {
     setPage('review');
+    setUrl(url);
   }
   if (page === 'review') {
     return (
       <div className="App">
-        <Review openCart={openCart}></Review>
+        <Review openCart={openCart} itemUrl={url}></Review>
       </div>
     )
   }
