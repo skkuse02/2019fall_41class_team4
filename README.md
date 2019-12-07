@@ -18,9 +18,10 @@ $ git clone https://github.com/skkuse02/2019fall_41class_team4.git
 $ python3 manage.py runserver
 ```
 ## Project Structure
+Backend:
 ```Backend
 picketserver
-├── Review_analyzier
+├── review_analyzier
 │   ├── LICENSE
 │   ├── kobert
 │   │   ├── __init__.py
