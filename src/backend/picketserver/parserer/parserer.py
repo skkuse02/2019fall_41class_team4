@@ -62,20 +62,25 @@ class Parserer:
 
 		return {'domain_name':self.m_tags['item_domain'], 'item_url':self.m_url, 'item_name':self._name, 'item_price':self._price, 'item_image':self._img}
 
-	def parseReview(self):
+	def parseReview(self, _driver):
 		self.parseDomain()
 		self.recvRTags()
-		self._driver = self.openWebdriver()
+		self._driver = _driver
+#self._driver = self.openWebdriver()
 		self._list = [] # review list
-		
-#		try:
-		exec(self.m_rtags['pagenum_tag'].encode('ascii').decode('unicode-escape'))
-#except:
-#			return {'status':'None', 'message':'no review'}
-		print('pagenum: ' + str(self._pagenum))
+	
+		# get page number 
+		try:
+			exec(self.m_rtags['pagenum_tag'].encode('ascii').decode('unicode-escape'))
+		except:
+			return {'status':'none', 'message':'no review'}
+		#print('pagenum: ' + str(self._pagenum))
+		if self._pagenum == 0:
+			return {'status':'none', 'message':'no review'}
 		if self._pagenum > 5:
 			self._pagenum = 5
-		
+
+		# get reviews	
 		exec(self.m_rtags['review_tag'].encode('ascii').decode('unicode-escape'))
 		
 		# run machine learning
