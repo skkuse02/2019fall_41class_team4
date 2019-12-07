@@ -10,5 +10,5 @@ class Tag(models.Model):
 
 class RTag(models.Model):
 	domain_name = models.CharField(max_length=16, primary_key=True)
-	tag_pagenum = models.CharField(max_length=255)
+	tag_pagenum = models.CharField(max_length=1024)
 	tag_review = models.CharField(max_length=1024)

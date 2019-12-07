@@ -1,4 +1,5 @@
 import sys
+import math
 from urllib.request import urlopen
 from selenium import webdriver
 from bs4 import BeautifulSoup
@@ -65,17 +66,21 @@ class Parserer:
 		self.parseDomain()
 		self.recvRTags()
 		self._driver = self.openWebdriver()
-		self._list = []
-
-		exec(self.m_rtags['pagenum_tag'].encode('ascii').decode('unicode-escape'))
+		self._list = [] # review list
 		
+#		try:
+		exec(self.m_rtags['pagenum_tag'].encode('ascii').decode('unicode-escape'))
+#except:
+#			return {'status':'None', 'message':'no review'}
+		print('pagenum: ' + str(self._pagenum))
 		if self._pagenum > 5:
 			self._pagenum = 5
 		
 		exec(self.m_rtags['review_tag'].encode('ascii').decode('unicode-escape'))
 		
 		# run machine learning
-		self._class = [0] * len(self._list)
+		
+		self._class = [0] * len(self._list) # classification list
 
 		_positive = []
 		_negative = []
@@ -84,7 +89,7 @@ class Parserer:
 				_positive.append(self._list[i])
 			else:
 				_negative.append(self._list[i])
-		return {'positive_review':_positive, 'negative_review':_negative, 'status':'success', 'message':'review tag'}
+		return {'positive_review':_positive, 'negative_review':_negative}
 
 	def recvTags(self):
 		tag = Tag.objects.get(domain_name = self.m_domain)
