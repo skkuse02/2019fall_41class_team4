@@ -1,0 +1,169 @@
+.inp {
+	box-sizing: border-box;
+	display: grid;
+	position: relative;
+	margin: 25px 0;
+	width: 100%;
+	max-width: 280px;
+}
+
+.inp .label {
+	position: absolute;
+	top: 16px;
+	left: 0;
+	font-size: 16px;
+	color: #9098a9;
+	font-weight: 500;
+	transform-origin: 0 0;
+	transition: all 0.2s ease;
+}
+
+.inp .border {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 2px;
+	width: 100%;
+	background: #4763a3;
+	transform: scaleX(0);
+	transform-origin: 0 0;
+	transition: all 0.15s ease;
+}
+
+.inp input {
+	-webkit-appearance: none;
+	width: 100%;
+	border: 0;
+	font-family: inherit;
+	padding: 12px 0;
+	height: 48px;
+	font-size: 16px;
+	font-weight: 500;
+	border-bottom: 2px solid #c8ccd4;
+	background: none;
+	border-radius: 0;
+	color: black;
+	transition: all 0.15s ease;
+}
+
+.inp input:hover {
+	background: rgba(34,50,84,0.03);
+}
+
+.inp input:not(:placeholder-shown) + span {
+	color: #5a667f;
+	transform: translateY(-26px) scale(0.75);
+}
+
+.inp input:focus {
+	background: none;
+	outline: none;
+}
+
+.inp input:focus + span {
+	color: #4763a3;
+	transform: translateY(-26px) scale(0.75);
+}
+
+.inp input:focus + span + .border {
+	transform: scaleX(1);
+}
+
+.Modal .content * {
+  box-sizing: border-box;
+}
+
+.Modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.16);
+}
+
+.Modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+.Modal > * {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.Modal > *:first-child {
+  margin-top: 16px;
+}
+.Modal p.title {
+  font-size: 16pt;
+  font-weight: bold;
+  color: #333;
+}
+.Modal .content {
+  border-top: 1px solid #bebebe;
+  margin-top: 16px;
+}
+.Modal .content p {
+  padding: 8px;
+  font-size: 12pt;
+  color: #999;
+}
+.Modal .button-wrap {
+  margin: 0;
+  margin-top: 8px;
+}
+.Modal .button-wrap button {
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 0 0 10px 10px;
+  background-color: #4763a3;
+  font-size: 13pt;
+  color: white;
+  border: 0;
+  cursor: pointer;
+}
+.Modal .button-wrap button:hover {
+  background-color: #4763a3;
+}
+.Modal .button-wrap button:active {
+  background-color: #4763a3;
+}
+
+.Modal-overlay.Modal-anim-enter {
+  opacity: 0;
+  transition: all 0.2s;
+}
+.Modal-overlay.Modal-anim-enter.Modal-anim-enter-active {
+  opacity: 1;
+}
+.Modal-overlay.Modal-anim-leave {
+  opacity: 1;
+  transition: all 0.2s;
+}
+.Modal-overlay.Modal-anim-leave.Modal-anim-leave-active {
+  opacity: 0;
+}
+
+.Modal.Modal-anim-enter {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.7);
+  transition: all 0.2s;
+}
+.Modal.Modal-anim-enter.Modal-anim-enter-active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.Modal.Modal-anim-leave {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: all 0.2s;
+}
+.Modal.Modal-anim-leave.Modal-anim-leave-active {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.7);
+}

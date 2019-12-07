@@ -5,10 +5,12 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css';
 import axios from "axios";
 import { loadLoginInfo } from "./authlib";
+import Modal from './Modal/Modal';
 
 function openUrl(url) {
     window.open(url);
 }
+
 
 function ItemCard(props) {
     return (
@@ -35,7 +37,7 @@ function ItemCard(props) {
                 <div class="box-down">
                     <div class="h-bg">
                     </div>
-                    <a class="cart" href="#" onClick={props.handleClickOpen}>
+                    <a class="cart" onClick={props.onModify}>
                         <span class="add-to-cart">
                             <span class="txt">Modify</span>
                         </span>
@@ -72,6 +74,16 @@ function Cart(props) {
     const [item_info, setItemInfo] = useState([]);
     const [user_id, setID] = useState('');
     const [url, setUrl] = useState('');
+    const [isModalOpen, setModalOpen] = useState(false);
+
+
+    const openModal = () => {
+        setModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalOpen(false);
+    }
 
     useEffect(() => {
         loadLoginInfo()
@@ -95,6 +107,10 @@ function Cart(props) {
             setUrl(tab.url);
         });
     }, [])
+
+    function onModify() {
+        setModalOpen(true);
+    }
 
     function addItem() {
         axios.post(server + "/item", { item_url: url })
@@ -145,7 +161,7 @@ function Cart(props) {
         return total_price;
     }
     const addCart = item_info.map(
-        (item) => (<ItemCard itemInfo={item} openReview={props.openReview} removeItem={removeItem}></ItemCard>)
+        (item) => (<ItemCard itemInfo={item} openReview={props.openReview} removeItem={removeItem} onModify={onModify}></ItemCard>)
     );
 
     return (
@@ -169,6 +185,7 @@ function Cart(props) {
                         <h5 class="save-txt">SAVE</h5>
                     </a>
                     <NotificationContainer />
+                    <Modal isOpen={isModalOpen} close={closeModal} />
                 </div>
             </div>
         </div>
