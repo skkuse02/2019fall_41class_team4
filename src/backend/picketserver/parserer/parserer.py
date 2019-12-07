@@ -66,7 +66,7 @@ class Parserer:
 		self.parseDomain()
 		self.recvRTags()
 		self._driver = _driver
-#self._driver = self.openWebdriver()
+		self._driver.get(self.m_url)
 		self._list = [] # review list
 	
 		# get page number 
@@ -83,8 +83,7 @@ class Parserer:
 		# get reviews	
 		exec(self.m_rtags['review_tag'].encode('ascii').decode('unicode-escape'))
 		
-		# run machine learning
-		
+		# run machine learning	
 		self._class = [0] * len(self._list) # classification list
 
 		_positive = []

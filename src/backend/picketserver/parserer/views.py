@@ -1,6 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .parserer import Parserer
+from django.conf import settings 
 import json
 
 @csrf_exempt
@@ -35,11 +36,11 @@ def select(_request):
 			_response['message'] = 'This shopping mall site is not supported'	
 		return _response
 	
-#_parserer.parseReview()
+#print(_parserer.parseReview(settings.DRIVER))
 	if 'review' in _path:
 		print("[Review Status]")
 		try:
-			_response = _parserer.parseReview()
+			_response = _parserer.parseReview(settings.DRIVER)
 			try:
 				if _response['status'] == 'none': 
 					return _response

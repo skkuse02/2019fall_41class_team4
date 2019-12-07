@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from selenium import webdriver
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,6 +19,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
+
+# Global Variables
+OPTIONS = webdriver.ChromeOptions()
+OPTIONS.add_argument('headless')
+PWD = os.getcwd()+'/chromedriver'
+DRIVER = webdriver.Chrome('/home/ubuntu/2019fall_41class_team4/src/backend/picketserver/picketserver/chromedriver', options=OPTIONS)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'qud#n!8qn)r0a*e@=xsv-^9ev1jztle4_7t^xoixw9pykb)406'
