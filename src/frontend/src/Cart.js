@@ -47,7 +47,7 @@ function ItemCard(props) {
                     </div>
 
                     <a class="cart" href="#" onClick={() => props.removeItem(props.itemInfo)}>
-                        <span class="price">{props.itemInfo.item_price}</span>
+                        <span class="price">{props.itemInfo.item_price}원</span>
                         <span class="add-to-cart" >
                             <span class="txt">Delete</span>
                         </span>
@@ -136,6 +136,14 @@ function Cart(props) {
                 console.log('err', error);
             });
     }
+
+    function getTotalPrice() {
+        let total_price = 0;
+        for (let i = 0; i < item_info.length; i++) {
+            total_price += parseInt(item_info[i].item_price.replace(/,/g, ''));
+        }
+        return total_price;
+    }
     const addCart = item_info.map(
         (item) => (<ItemCard itemInfo={item} openReview={props.openReview} removeItem={removeItem}></ItemCard>)
     );
@@ -145,7 +153,7 @@ function Cart(props) {
             <div class="menu-bar">
                 <img class="menu icon1" src="img/shopping-cart.png" />
                 <h2 class="menu picket">PICKET</h2>
-                <h2 class="menu price">PRICE : </h2>
+                <h2 class="menu price">PRICE : {getTotalPrice()}원</h2>
                 <div class=" menu contact-box" onClick={props.openRequest}>
                     <img class="menu icon2" src="img/phone.png" />
                     <h2 class="menu contact">Contact Us</h2>
