@@ -8,13 +8,25 @@ from kobert.mxnet_kobert import get_mxnet_kobert_model
 from kobert.utils import get_tokenizer
 from keras.callbacks import ModelCheckpoint
 
-from BERTClass import BERTClassifier
 from BERTdata import BERTDataset
 
 
 def run_model(review_list):
 	ctx = mx.gpu() if mx.context.num_gpus() else mx.cpu()
+	
+	
+	class BERTClassifier(nn.Block):
+		def __init__(self, bert, num_classes=2, dropout=None, prefix=None, params=None):
+		    super(BERTClassifier, self).__init__(prefix=prefix, params=params)
+		    self.bert = bert
 
+		    with self.name_scope():
+		        self.classifier = nn.SymbolBlock.imports("electric.ckp-symbol.json", ['data'], "electric.ckp-0009.params", ctx=ctx)
+
+		def forward(self, inputs, token_types, valid_length=None):
+		    _, pooler = self.bert(inputs, token_types, valid_length)
+		    return self.classifier(pooler)
+        
 	bert_base, vocab = get_mxnet_kobert_model(use_decoder=False, use_classifier=False, ctx=ctx)
 	tokenizer = get_tokenizer()
 	tok = nlp.data.BERTSPTokenizer(tokenizer, vocab, lower=False)
@@ -40,7 +52,7 @@ def run_model(review_list):
 	
 	ifptr.close()
 	
-	dataset_test = nlp.data.TSVDataset("test_file.txt", field_indices=[1, 2], num_discard_samples=1)
+	dataset_test = nlp.data.TSVDataset("temp_file.txt", field_indices=[1, 2], num_discard_samples=1)
 
 	max_len = 128
 	data_test = BERTDataset(dataset_test, 0, 1, tok, max_len, True, False)
