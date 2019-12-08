@@ -17,7 +17,7 @@ function Review(props) {
   const [positiveReview, setPositiveReview] = useState([]);
   const [negativeReview, setNegativeReview] = useState([]);
   const [review, setReview] = useState([]);
-  const server = "http://ec2-13-125-249-233.ap-northeast-2.compute.amazonaws.com:8080";
+  const server = "http://ec2-54-180-89-72.ap-northeast-2.compute.amazonaws.com:8080";
 
   function Notification(type, message) {
     if (type === 'fail') NotificationManager.error(message, 'Failed to laod Review', 2700, () => { });

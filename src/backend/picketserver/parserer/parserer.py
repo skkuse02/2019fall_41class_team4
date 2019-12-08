@@ -1,5 +1,6 @@
 import sys
 import math
+import re
 from urllib.request import urlopen
 from selenium import webdriver
 from bs4 import BeautifulSoup
@@ -74,7 +75,7 @@ class Parserer:
 			exec(self.m_rtags['pagenum_tag'].encode('ascii').decode('unicode-escape'))
 		except:
 			return {'status':'none', 'message':'no review'}
-		#print('pagenum: ' + str(self._pagenum))
+
 		if self._pagenum == 0:
 			return {'status':'none', 'message':'no review'}
 		if self._pagenum > 5:
@@ -85,6 +86,10 @@ class Parserer:
 		
 		# run machine learning	
 		self._class = [0] * len(self._list) # classification list
+		# try:
+		# machine learning save at self._class, data is in _list
+		# except:
+		# pass
 
 		_positive = []
 		_negative = []
