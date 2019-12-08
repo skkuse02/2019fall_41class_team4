@@ -47,7 +47,11 @@ function Login(props) {
       user_pw: password
     })
       .then(function (response) {
-        if (response.data.status === 'fail') Notification('login-fail', response.data.message);
+        if (response.data.status === 'fail') {
+          Notification('login-fail', response.data.message);
+          setID('');
+          setPassword('');
+        }
         else {
           saveLoginInfo(id, password);
           props.openCart();
