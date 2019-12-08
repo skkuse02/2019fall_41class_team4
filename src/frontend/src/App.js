@@ -8,9 +8,7 @@ import { loadLoginInfo, logout } from './authlib';
 import { tsPropertySignature } from '@babel/types';
 
 function App() {
-  chrome.tabs.getSelected(null, function (tab) {
-    document.getElementById("url-input").value = tab.url;
-  });
+
   window.logout = logout;
   const [page, setPage] = useState('login');
   const [url, setUrl] = useState('');
