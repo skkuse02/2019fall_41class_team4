@@ -36,7 +36,7 @@ def select(_request):
 			_response['message'] = 'This shopping mall site is not supported'	
 		return _response
 	
-	
+	print(_parserer.parseReview(settings.DRIVER))	
 	if 'review' in _path:
 		print("[Review Status]")
 		try:

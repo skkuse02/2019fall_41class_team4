@@ -4,8 +4,8 @@ from mxnet import gluon, autograd
 import gluonnlp as nlp
 import mxnet as mx
 
-from kobert.mxnet_kobert import get_mxnet_kobert_model
-from kobert.utils import get_tokenizer
+from .kobert.mxnet_kobert import get_mxnet_kobert_model
+from .kobert.utils import get_tokenizer
 
 class BERTDataset(mx.gluon.data.Dataset):
     def __init__(self, dataset, sent_idx, label_idx, bert_tokenizer, max_len, pad, pair):
