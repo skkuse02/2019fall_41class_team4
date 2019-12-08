@@ -18,6 +18,8 @@ class Authenticator:
             
 	def validateUser(self):
 		# validate id, pw
+		if self.m_id == '' or self.m_pw == '':
+			return {"status":"fail", "message":"Fill in both ID and PW"}
 		try:
 			user = User.objects.get(user_id = self.m_id)
 		except:
@@ -31,6 +33,8 @@ class Authenticator:
 
 	def registerUser(self):
 		# register new user
+		if self.m_id == '' or self.m_pw == '' or self.m_email == '':
+			return {"status":"fail", "message":"Fill in all required boxess"}
 		try:
 			User.objects.get(user_id = self.m_id)
 			return {"status":"fail", "message":"This ID is already in Use. Please re-enter."}
