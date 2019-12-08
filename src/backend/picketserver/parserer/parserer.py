@@ -5,6 +5,7 @@ from urllib.request import urlopen
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from .models import Tag, RTag
+from model_loader import run_model
 
 class Parserer:
 
@@ -85,11 +86,12 @@ class Parserer:
 		exec(self.m_rtags['review_tag'].encode('ascii').decode('unicode-escape'))
 		
 		# run machine learning	
-		self._class = [0] * len(self._list) # classification list
-		# try:
+		self._class = None # classification list
+		try:
 		# machine learning save at self._class, data is in _list
-		# except:
-		# pass
+			self._class = run_model(self._list)
+		except:
+			pass
 
 		_positive = []
 		_negative = []
