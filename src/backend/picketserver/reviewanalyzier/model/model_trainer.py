@@ -6,8 +6,8 @@ import mxnet as mx
 
 from kobert.mxnet_kobert import get_mxnet_kobert_model
 from kobert.utils import get_tokenizer
-from .BERTdata import BERTDataset
-from .BERTClass import BERTClassifier
+from BERTdata import BERTDataset
+from BERTClass import BERTClassifier
 
 
 ctx = mx.gpu() if mx.context.num_gpus() else mx.cpu()
@@ -34,7 +34,7 @@ bert_base, vocab = get_mxnet_kobert_model(use_decoder=False, use_classifier=Fals
 tokenizer = get_tokenizer()
 tok = nlp.data.BERTSPTokenizer(tokenizer, vocab, lower=False)
 
-dataset_train = nlp.data.TSVDataset("electric_dataset.txt", field_indices=[1, 2], num_discard_samples=1)
+dataset_train = nlp.data.TSVDataset("dataset.txt", field_indices=[1, 2], num_discard_samples=1)
 
 max_len = 128
 data_train = BERTDataset(dataset_train, 0, 1, tok, max_len, True, False)
@@ -54,7 +54,7 @@ train_dataloader = mx.gluon.data.DataLoader(data_train, batch_size=batch_size)
 
 trainer = gluon.Trainer(model.collect_params(), 'bertadam', {'learning_rate': lr, 'epsilon': 1e-9, 'wd':0.01})
 log_interval = 4
-num_epochs = 5
+num_epochs = 15
 
 # LayerNorm과 Bias에는 Weight Decay를 적용하지 않는다.
 for _, v in model.collect_params('.*beta|.*gamma|.*bias').items():
