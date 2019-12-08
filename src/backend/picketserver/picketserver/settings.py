@@ -23,6 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Global Variables
 OPTIONS = webdriver.ChromeOptions()
 OPTIONS.add_argument('headless')
+OPTIONS.add_argument('--no-sandbox')
+OPTIONS.add_argument('--disable-dev-shm-usage')
+OPTIONS.add_argument('--remote-debugging-port=9222')
 PWD = os.getcwd()+'/chromedriver'
 DRIVER = webdriver.Chrome('/home/ubuntu/2019fall_41class_team4/src/backend/picketserver/picketserver/chromedriver', options=OPTIONS)
 
