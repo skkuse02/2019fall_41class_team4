@@ -66,7 +66,12 @@ function Login(props) {
     })
       .then(function (response) {
         console.log(response.data);
-        if (response.data.status === 'fail') Notification('register-fail', response.data.message);
+        if (response.data.status === 'fail') {
+          Notification('register-fail', response.data.message);
+          setID('');
+          setPassword('');
+          setEmail('');
+        }
         else Notification('register-success', response.data.message)
       })
       .catch(function (error) {
