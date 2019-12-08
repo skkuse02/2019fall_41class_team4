@@ -68,7 +68,7 @@ function Cart(props) {
         if (type === 'save-success') NotificationManager.info('', 'Save Completed', 1000);
     }
 
-    const server = "http://ec2-13-125-249-233.ap-northeast-2.compute.amazonaws.com:8080";
+    const server = "http://ec2-54-180-89-72.ap-northeast-2.compute.amazonaws.com:8080";
     const [item_info, setItemInfo] = useState([]);
     const [user_id, setID] = useState('');
     const [url, setUrl] = useState('');
