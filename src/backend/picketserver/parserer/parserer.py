@@ -91,6 +91,7 @@ class Parserer:
 		# machine learning save at self._class, data is in _list
 			self._class = run_model(self._list)
 		except:
+			self._class = [0] * len(self._list)
 			pass
 
 		_positive = []
